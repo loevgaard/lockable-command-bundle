@@ -1,5 +1,6 @@
 {
     "name": "loevgaard/lockable-command-bundle",
+    "minimum-stability": "dev",
     "type": "symfony-bundle",
     "description": "symfony Lockable Command Bundle",
     "keywords": ["console", "command", "locker"],
