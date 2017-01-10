@@ -1,0 +1,25 @@
+{
+    "name": "loevgaard/lockable-command-bundle",
+    "type": "symfony-bundle",
+    "description": "symfony Lockable Command Bundle",
+    "keywords": ["console", "command", "locker"],
+    "homepage": "https://github.com/loevgaard/lockable-command-bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Joachim Loevgaard",
+            "email": "joachim@loevgaard.dk"
+        }
+    ],
+    "require": {
+        "php": "^5.5.9 || ^7.0",
+        "symfony/framework-bundle": "^2.7 || ^3.0",
+        "symfony/console": "^2.7 || ^3.0",
+        "symfony/filesystem": "^2.7 || ^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Loevgaard\\LockableCommandBundle\\": ""
+        }
+    }
+}
