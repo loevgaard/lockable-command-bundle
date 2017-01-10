@@ -3,7 +3,7 @@ namespace Loevgaard\LockableCommandBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class LockableCommandBundle extends Bundle
+class LoevgaardLockableCommandBundle extends Bundle
 {
 
 }

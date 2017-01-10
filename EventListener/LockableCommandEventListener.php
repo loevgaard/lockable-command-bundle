@@ -5,25 +5,17 @@ use Loevgaard\LockableCommandBundle\Command\LockableCommandInterface;
 use Symfony\Component\Console\Event\ConsoleCommandEvent;
 use Symfony\Component\Console\Event\ConsoleEvent;
 use Symfony\Component\Console\Event\ConsoleTerminateEvent;
+use Symfony\Component\Console\Output\Output;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Filesystem\LockHandler;
 
 class LockableCommandEventListener
 {
-    /**
-     * @var ContainerInterface
-     */
-    private $container;
-
-    public function __construct(ContainerInterface $container) {
-        $this->container = $container;
-    }
-
     public function onConsoleCommand(ConsoleCommandEvent $event) {
         $locker = $this->getLocker($event);
         if($locker) {
             if(!$locker->lock()) {
-                $event->getOutput()->writeln('Command locked');
+                $event->getOutput()->writeln('Command locked', Output::VERBOSITY_VERBOSE);
                 $event->disableCommand();
                 return;
             }

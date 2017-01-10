@@ -1,0 +1,6 @@
+services:
+    loevgaard_lockable_command.listener:
+        class: Loevgaard\LockableCommandBundle\EventListener\LockableCommandEventListener
+        tags:
+            - { name: kernel.event_listener, event: console.command }
+            - { name: kernel.event_listener, event: console.terminate }
