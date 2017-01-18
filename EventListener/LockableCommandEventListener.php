@@ -6,18 +6,20 @@ use Symfony\Component\Console\Event\ConsoleCommandEvent;
 use Symfony\Component\Console\Event\ConsoleEvent;
 use Symfony\Component\Console\Event\ConsoleTerminateEvent;
 use Symfony\Component\Console\Output\Output;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Filesystem\LockHandler;
 
 class LockableCommandEventListener
 {
     public function onConsoleCommand(ConsoleCommandEvent $event) {
+        $event->getOutput()->writeln('Trying to acquire lock...', Output::VERBOSITY_VERBOSE);
         $locker = $this->getLocker($event);
         if($locker) {
-            if(!$locker->lock()) {
-                $event->getOutput()->writeln('Command locked', Output::VERBOSITY_VERBOSE);
+            $locked = $locker->lock();
+            if($locked) {
+                $event->getOutput()->writeln('Lock acquired...', Output::VERBOSITY_VERBOSE);
+            } else {
+                $event->getOutput()->writeln('Command locked, disabling command...', Output::VERBOSITY_VERBOSE);
                 $event->disableCommand();
-                return;
             }
         }
     }
