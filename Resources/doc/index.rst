@@ -4,11 +4,13 @@ Getting Started With Lockable Command Bundle
 Install
 -------
 .. code-block:: bash
+
     composer require loevgaard/lockable-command-bundle
 
 Enable the bundle
 -----------------
 .. code-block:: php
+
     <?php
     // app/AppKernel.php
 
@@ -24,6 +26,7 @@ Enable the bundle
 Implement the LockableCommandInterface
 --------------------------------------
 .. code-block:: php
+
     <?php
     namespace AppBundle\Command;
 
