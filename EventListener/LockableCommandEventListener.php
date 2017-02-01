@@ -29,8 +29,8 @@ class LockableCommandEventListener
      * @return FileLocker|null
      */
     private function getLocker(ConsoleEvent $event) {
-        $command        = $event->getCommand();
-        $locker    = null;
+        $command    = $event->getCommand();
+        $locker     = null;
 
         if($command instanceof LockableCommandInterface) {
             $locker = new FileLocker($command->getName());
