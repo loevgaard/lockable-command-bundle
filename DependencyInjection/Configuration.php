@@ -13,7 +13,7 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-                ->scalarNode('lock_dir')->end()
+                ->scalarNode('lock_dir')->defaultValue('')->end()
             ->end()
         ;
 
