@@ -1,6 +1,7 @@
 services:
     loevgaard_lockable_command.listener:
         class: Loevgaard\LockableCommandBundle\EventListener\LockableCommandEventListener
+        arguments: [ "@service_container" ]
         tags:
             - { name: kernel.event_listener, event: console.command }
             - { name: kernel.event_listener, event: console.terminate }
