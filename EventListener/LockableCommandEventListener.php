@@ -7,9 +7,18 @@ use Symfony\Component\Console\Event\ConsoleCommandEvent;
 use Symfony\Component\Console\Event\ConsoleEvent;
 use Symfony\Component\Console\Event\ConsoleTerminateEvent;
 use Symfony\Component\Console\Output\Output;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class LockableCommandEventListener
 {
+    /** @var ContainerInterface */
+    protected $container;
+
+    public function __construct(ContainerInterface $container)
+    {
+        $this->container = $container;
+    }
+
     public function onConsoleCommand(ConsoleCommandEvent $event) {
         $event->getOutput()->writeln('Trying to acquire lock...', Output::VERBOSITY_VERBOSE);
         $locker = $this->getLocker($event);
@@ -33,7 +42,7 @@ class LockableCommandEventListener
         $locker     = null;
 
         if($command instanceof LockableCommandInterface) {
-            $locker = new FileLocker($command->getName());
+            $locker = new FileLocker($command->getName(), $this->container->getParameter('loevgaard_lockable_command.lock_dir'));
         }
         return $locker;
     }
