@@ -20,7 +20,6 @@ class LockableCommandEventListener
     }
 
     public function onConsoleCommand(ConsoleCommandEvent $event) {
-        $event->getOutput()->writeln('Trying to acquire lock...', Output::VERBOSITY_VERBOSE);
         $locker = $this->getLocker($event);
         if($locker && !$locker->lock()) {
             $event->getOutput()->writeln('Command locked, disabling command...', Output::VERBOSITY_VERBOSE);
